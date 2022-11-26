@@ -1,0 +1,118 @@
+<div class="container-fluid bg-light">
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-8 justify-content-end">
+                            Kode Tiket - {{ticketResDto.data.code}}
+                        </div>
+                        <div class="col-md-2 offset-md-2 text-end">
+                            <span class="badge rounded-pill text-black">Prioritas :
+                                {{ticketResDto.data.priority}}</span>
+                            <span class="badge rounded-pill text-black">Status : {{ticketResDto.data.status}}</span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Produk : {{ticketResDto.data.productName}}</li>
+                </ul>
+                <div class="card-body">
+                    <h5 class="card-title">{{ticketResDto.data.title}}</h5>
+                    <p class="card-text mb-5">{{ticketResDto.data.content}}</p>
+                    <ng-container *ngFor="let d of attachmentTicketListResDto.data; index as i">
+                        <a href="{{fileDownload}}{{d.fileId}}" class="btn btn-secondary mt-1">Download</a>
+                    </ng-container>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ticketResDto.data.createdAt | date:'HH:mm:ss dd/MM/yyyy' }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    Tambah Komentar
+                </div>
+                <div class="card-body">
+                    <form class="row" #formCommentInsert="ngForm" (ngSubmit)="formCommentInsert.valid && submit()">
+                        <div class="row">
+                            <div class="col-md-2 mt-1 mb-1">
+                                <label for="comments" class="form-label">Komentar<span
+                                        class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-md-4 mt-1 mb-1">
+                                <textarea name="comments" id="comments" class="form-control"
+                                    [(ngModel)]="commentInsertReqDto._comments" required [disabled]="statusTicket"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 mt-1 mb-1">
+                                <label for="file" class="form-label">Upload File</label>
+                            </div>
+                            <div class="col-md-4 mt-1 mb-1">
+                                <input class="form-control" type="file" id="file" multiple
+                                    (change)="fileUpload($event)" [disabled]="statusTicket">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-4 mb-1">
+                            <button [disabled]="formCommentInsert.invalid" class="btn btn-primary" type="submit"
+                                id="insertComment">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    Komentar
+                </div>
+                <div class="card-body">
+
+                    <ng-container *ngFor="let d of commentListResDto.data">
+                        <div class="row">
+                            <div [ngClass]="userId === d.userId ? 'col-md-4 mt-3' : 'col-md-4 offset-md-8 mt-3'">
+                                <div class="card text-bg-primary mb-3">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                {{d.fullname}}
+                                            </div>
+                                            <div class="col-md-2">
+                                                <ng-template [ngIf]="d.photoId !== null">
+                                                    <img src="{{fileDownload}}{{d.photoId}}" id="profile" alt="foto">
+                                                </ng-template>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <span class="badge rounded-pill text-bg-light">{{d.createdAt |
+                                                    date:'HH:mm:ss dd/MM/yyyy'}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            {{d.comments}}
+                                        </p>
+                                        <ng-container *ngFor="let f of d.fileId">
+                                            <a href="{{fileDownload}}{{f}}" class="btn btn-secondary mt-1">Download</a>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

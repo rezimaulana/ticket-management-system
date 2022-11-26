@@ -1,0 +1,45 @@
+<div class="container-fluid bg-light">
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card mt-5">
+                <div class="card-header">Data Tiket</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Kode</th>
+                                    <th>Judul</th>
+                                    <th>Status</th>
+                                    <th>Prioritas</th>
+                                    <th>Nama Produk</th>
+                                    <th>Nama Pelanggan</th>
+                                    <th>Waktu Pembuatan</th>
+                                    <th>Aktif</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let t of ticketListResDto.data; index as i">
+                                    <td>{{i+1}}</td>
+                                    <td>{{t.code}}</td>
+                                    <td>{{t.title}}</td>
+                                    <td>{{t.status}}</td>
+                                    <td>{{t.priority}}</td>
+                                    <td>{{t.productName}}</td>
+                                    <td>{{t.customerName}}</td>
+                                    <td>{{t.createdAt | date:'HH:mm:ss dd/MM/yyyy' }}</td>
+                                    <td>{{t.isActive}}</td>
+                                    <td><a routerLink="/tickets/pic/detail/{{t.id}}" class="btn btn-primary">Detail</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

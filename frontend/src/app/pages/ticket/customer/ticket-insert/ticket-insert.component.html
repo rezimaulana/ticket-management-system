@@ -1,0 +1,56 @@
+<div class="container-fluid bg-light">
+    <div class="col-md-10 offset-md-1">
+        <div class="card mt-5">
+            <div class="card-header">Buat Tiket Baru</div>
+            <div class="card-body">
+                <a routerLink="/tickets/customer" class="btn btn-secondary mb-4">Kembali</a>
+                <form class="row" #formTicketInsert="ngForm" (ngSubmit)="formTicketInsert.valid && submit()">
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="title" class="form-label">Judul<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input type="text" name="title" id="title" class="form-control" [(ngModel)]="ticketInsertReqDto._title" required>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="content" class="form-label">Konten<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <textarea name="content" id="content" class="form-control" [(ngModel)]="ticketInsertReqDto._content" required></textarea>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="priority" class="form-label">Prioritas<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <select name="priority" id="priority" class="form-select" [(ngModel)]="ticketInsertReqDto._ticketPriorityCode" required>
+                            <option>Pilih Prioritas</option>
+                            <ng-container  *ngFor="let data of ticketPriorityListResDto.data">
+                                <option value ="{{data.priorityCode}}">{{data.priority}}</option>   
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="productCustomerId" class="form-label">Produk<span
+                                class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <select name="productCustomerId" id="productCustomerId" class="form-select"  [(ngModel)]="ticketInsertReqDto._productCustomerId" required>
+                            <option>Pilih Produk</option>
+                            <ng-container  *ngFor="let data of productCustomerListResDto.data">
+                                <option value ="{{data.id}}">{{data.productName}}</option>   
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="file" class="form-label">Upload File</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input class="form-control" type="file" id="file" multiple (change)="fileUpload($event)">
+                    </div>
+                    <div class="col-md-12 mt-4 mb-1">
+                        <button [disabled]="formTicketInsert.invalid" class="btn btn-primary" type="submit" id="insertTicket">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

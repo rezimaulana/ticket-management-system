@@ -1,0 +1,66 @@
+<div class="container-fluid bg-light">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+
+
+            <div class="card mt-5">
+                <div class="card-header">Tambah Produk Pelanggan</div>
+                <div class="card-body">
+
+                    <a href="/product-customer" class="btn btn-secondary mb-4">Kembali</a>
+                    <form>
+                        <div class="card text-bg-light mt-2 mb-3 w-100">
+                            <div class="card-header">
+                                <div class="row justify-content-end">
+                                    <div class="col-md-2 text-end">
+                                        <button class="btn btn-primary" type="button" id="btnAssign" (click)="addInsert()">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                
+                            <ng-container *ngFor="let input of inputList; index as i">
+                                <div class="row">
+                                    <div class="col-md-2 mt-1 mb-1">
+                                        <label for="productId" class="form-label">Produk<span
+                                                class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="col-md-3 mt-1 mb-1">
+                                        <select name="productId" id="productId" class="form-select" (change)="changeProduct(i,$event)" required>
+                                            <option>Pilih Produk</option>
+                                            <ng-container *ngFor="let d of productListResDto.data">
+                                                <option value="{{d.id}}">{{d.productCode}} - {{d.productName}}</option>
+                                            </ng-container>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 mt-1 mb-1">
+                                        <label for="customerId" class="form-label">Customer<span
+                                                class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="col-md-3 mt-1 mb-1">
+                                        <select name="customerId" id="customerId" class="form-select" (change)="changeCustomer(i,$event)" required>
+                                            <option>Pilih Customer</option>
+                                            <ng-container *ngFor="let d of userListResDto.data">
+                                                <option value="{{d.id}}">{{d.email}} - {{d.fullname}}</option>
+                                            </ng-container>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 mt-1 mb-1 text-center">
+                                        <button class="btn btn-danger" type="button" id="btnRemove" (click)="remove(i)">-</button>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-4 mb-1">
+                            <button class="btn btn-primary" type="button" id="insertProductCustomer" (click)="submit()">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

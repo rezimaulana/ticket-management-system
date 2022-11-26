@@ -1,0 +1,5 @@
+enum TICKET_STATUS_CONST{
+    STATOP = "T01", STATCL = "T02", STATRO = "T03" 
+}
+
+export{TICKET_STATUS_CONST}

@@ -1,0 +1,72 @@
+<div class="container-fluid bg-light">
+    <div class="col-md-10 offset-md-1">
+        <div class="card mt-5">
+            <div class="card-header">Update Data User</div>
+            <div class="card-body">
+                <a routerLink="/users" class="btn btn-secondary mb-4">Kembali</a>
+                <form class="row" #formUserUpdate="ngForm" (ngSubmit)="formUserUpdate.valid && submit()">
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="email" class="form-label">Email</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input type="email" name="email" id="email" class="form-control"
+                            value="{{userResDto.data.email}}" required disabled>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="fullname" class="form-label">Fullname<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input type="text" name="fullname" id="fullname" class="form-control"
+                        [(ngModel)]="userUpdateReqDto._fullname" required>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="role" class="form-label">Role</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <select name="role" id="role" class="form-control" required disabled>
+                            <option value="{{userResDto.data.roleId}}" selected>{{userResDto.data.roleCode}}
+                                {{userResDto.data.roleName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="company" class="form-label">Perusahaan</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <select name="company" id="company" class="form-control" disabled>
+                            <option value="{{userResDto.data.companyId}}" selected>{{userResDto.data.companyCode}}
+                                {{userResDto.data.companyName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="pic" class="form-label">PIC</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <select name="pic" id="pic" class="form-control" disabled>
+                            <option value="{{userResDto.data.picId}}" selected>{{userResDto.data.picEmail}}
+                                {{userResDto.data.picName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="photo" class="form-label">Upload foto</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input class="form-control" type="file" id="photo" (change)="fileUpload($event)">
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="isActive" class="form-label">Aktif<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input type="radio" name="isActive" id="true" class="form-check-input" [(ngModel)]="userUpdateReqDto._isActive" [value]="true">
+                        <label for="true" class="form-check-label">True</label>
+                        <input type="radio" name="isActive" id="false" class="form-check-input"[(ngModel)]="userUpdateReqDto._isActive" [value]="false">
+                        <label for="false" class="form-check-label">False</label>
+                    </div>
+                    <div class="col-md-12 mt-4 mb-1">
+                        <button [disabled]="formUserUpdate.invalid" class="btn btn-primary" type="submit"
+                            id="updateUser">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

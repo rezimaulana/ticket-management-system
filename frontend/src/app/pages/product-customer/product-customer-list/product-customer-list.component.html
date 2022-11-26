@@ -1,0 +1,60 @@
+<div class="container-fluid bg-light">
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card mt-5">
+                <div class="card-header">Data Produk Customer</div>
+                <div class="card-body">
+                    <a href="/product-customer/new" class="btn btn-primary">Create</a>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Kode Produk</th>
+                                    <th>Nama Produk</th>
+                                    <th>Email</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Aktif</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let d of productCustomerListResDto.data ; index as i">
+                                    <td>{{i+1}}</td>
+                                    <td>{{d.productCode}}</td>
+                                    <td>{{d.productName}}</td>
+                                    <td>{{d.customerEmail}}</td>
+                                    <td>{{d.customerName}}</td>
+                                    <td>{{d.isActive}}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal" (click)="deleteById(d.id)">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Apakah anda akan menghapus data ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="remove()">Ya</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

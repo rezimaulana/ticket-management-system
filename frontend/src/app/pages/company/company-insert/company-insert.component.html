@@ -1,0 +1,42 @@
+<div class="container-fluid bg-light">
+    <div class="col-md-10 offset-md-1">
+        <div class="card mt-5">
+            <div class="card-header">Tambah Data Perusahaan</div>
+            <div class="card-body">
+                <a routerLink="/companies" class="btn btn-secondary mb-4">Kembali</a>
+                <form class="row" #formCompanyInsert="ngForm" (ngSubmit)="formCompanyInsert.valid && submit()">
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="companyCode" class="form-label">Kode Perusahaan<span
+                                class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input type="text" name="companyCode" id="companyCode" class="form-control" [(ngModel)]="companyInsertReqDto._companyCode" required>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="companyName" class="form-label">Nama Perusahaan<span
+                                class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input type="text" name="companyName" id="companyName" class="form-control" [(ngModel)]="companyInsertReqDto._companyName" required>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="companyCode" class="form-label">Alamat Perusahaan<span
+                                class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <textarea name="companyAddress" id="companyAddress" class="form-control" [(ngModel)]="companyInsertReqDto._companyAddress" required></textarea>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="photo" class="form-label">Upload foto</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input class="form-control" type="file" id="photo" (change)="fileUpload($event)">
+                    </div>
+                    <div class="col-md-12 mt-4 mb-1">
+                        <button [disabled]="formCompanyInsert.invalid" class="btn btn-primary" type="submit" id="insertCompany">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

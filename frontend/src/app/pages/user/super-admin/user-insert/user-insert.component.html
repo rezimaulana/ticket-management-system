@@ -1,0 +1,66 @@
+<div class="container-fluid bg-light">
+    <div class="col-md-10 offset-md-1">
+        <div class="card mt-5">
+            <div class="card-header">Tambah Data User</div>
+            <div class="card-body">
+                <a routerLink="/users" class="btn btn-secondary mb-4">Kembali</a>
+                <form class="row" #formUserInsert="ngForm" (ngSubmit)="formUserInsert.valid && submit()">
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input type="text" name="email" id="email" class="form-control" [(ngModel)]="userInsertReqDto._email" required>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="fullname" class="form-label">Fullname<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input type="text" name="fullname" id="fullname" class="form-control" [(ngModel)]="userInsertReqDto._fullname" required>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="role" class="form-label">Role<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <select name="role" id="role" class="form-select" [(ngModel)]="userInsertReqDto._roleId" required>
+                            <option>Pilih Role</option>
+                            <ng-container  *ngFor="let data of roleListResDto.data">
+                                <option value ="{{data.id}}">{{data.roleCode}} {{data.roleName}}</option>   
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="pic" class="form-label">PIC</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <select name="pic" id="pic" class="form-select" [(ngModel)]="userInsertReqDto._picId">
+                            <option>Pilih PIC</option>
+                            <ng-container  *ngFor="let data of userListResDto.data">
+                                <option value = "{{data.id}}">{{data.email}} {{data.fullname}}</option>   
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="company" class="form-label">Perusahaan</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <select name="company" id="company" class="form-select" [(ngModel)]="userInsertReqDto._companyId">
+                            <option>Pilih Perusahaan</option>
+                            <ng-container  *ngFor="let data of companyListResDto.data">
+                                <option value = "{{data.id}}">{{data.companyCode}} {{data.companyName}}</option>   
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mt-1 mb-1">
+                        <label for="photo" class="form-label">Upload foto</label>
+                    </div>
+                    <div class="col-md-4 mt-1 mb-1">
+                        <input class="form-control" type="file" id="photo" (change)="fileUpload($event)">
+                    </div>
+                    <div class="col-md-12 mt-4 mb-1">
+                        <button [disabled]="formUserInsert.invalid" class="btn btn-primary" type="submit" id="insertUser">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

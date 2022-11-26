@@ -1,0 +1,50 @@
+<div class="container-fluid bg-light">
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    Profil
+                </div>
+                <div class="card-body">
+                    <div class="row text-center g-3">
+                        <div class="col-md-12">
+                            <ng-template [ngIf]="userResDto.data.fileId !== null">
+                                <img src="{{fileDownload}}{{userResDto.data.fileId}}" alt="user" id="profile-photo">
+                            </ng-template>
+                        </div>
+                        <div class="col-md-12">
+                            Nama : {{userResDto.data.fullname}}
+                        </div>
+                        <div class="col-md-12">
+                            Email : {{userResDto.data.email}}
+                        </div>
+                        <ng-template [ngIf]="userResDto.data.companyName !== null">
+                            <div class="col-md-12">
+                                Perusahaan : {{userResDto.data.companyName}}
+                            </div>
+                        </ng-template>
+                        <ng-template [ngIf]="userResDto.data.roleName !== null">
+                            <div class="col-md-12">
+                                Role : {{userResDto.data.roleName}}
+                            </div>
+                        </ng-template>
+                        <ng-template [ngIf]="userResDto.data.picEmail !== null">
+                            <div class="col-md-12">
+                                PIC : {{userResDto.data.picEmail}} - {{userResDto.data.picName}}
+                            </div>
+                        </ng-template>
+                        <div class="col-md-12">
+                            <a routerLink="/profile/{{roleNavigation}}/update" class="btn btn-primary">Update Profil</a>
+                            <a routerLink="/profile/{{roleNavigation}}/password" class="btn btn-primary">Ganti Password</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

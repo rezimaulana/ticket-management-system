@@ -1,0 +1,19 @@
+<div class="container-fluid bg-light">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card">
+            <div class="card-header">Ticket Management System</div>
+            <div class="card-body">
+                <form class="justify-content-center" #formLogin="ngForm" (ngSubmit)="formLogin.valid && submit()">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="loginReqDto._email" required>
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="loginReqDto._password" required>
+                    <p class="card-text mt-3">Klik tombol untuk login.</p>
+                    <div class="btn-group">
+                        <button [disabled]="formLogin.invalid" type="submit" class="btn btn-primary" id="btnLogin">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

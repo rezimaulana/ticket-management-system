@@ -1,0 +1,33 @@
+<div class="container-fluid bg-light">
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card mt-5">
+                <div class="card-header">Data Produk</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Kode Produk</th>
+                                    <th>Nama Produk</th>
+                                    <th>Aktif</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let d of productListResDto.data ; index as i">
+                                    <td>{{i+1}}</td>
+                                    <td>{{d.productCode}}</td>
+                                    <td>{{d.productName}}</td>
+                                    <td>{{d.isActive}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,49 @@
+<div class="container-fluid bg-light">
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card mt-5">
+                <div class="card-header">Data Pelanggan</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Email</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Kode Role</th>
+                                    <th>Nama Role</th>
+                                    <th>Email Pic</th>
+                                    <th>Nama Pic</th>
+                                    <th>Kode Perusahaan</th>
+                                    <th>Nama Perusahaan</th>
+                                    <th>Foto</th>
+                                    <th>Aktif</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let d of userListResDto.data ; index as i">
+                                    <td>{{i+1}}</td>
+                                    <td>{{d.email}}</td>
+                                    <td>{{d.fullname}}</td>
+                                    <td>{{d.roleCode}}</td>
+                                    <td>{{d.roleName}}</td>
+                                    <td>{{d.picEmail}}</td>
+                                    <td>{{d.picName}}</td>
+                                    <td>{{d.companyCode}}</td>
+                                    <td>{{d.companyName}}</td>
+                                    <td>
+                                        <ng-template [ngIf]="d.fileId !== null">
+                                            <img src="{{fileDownload}}{{d.fileId}}" alt="user-list-photo" id="user-list-photo">
+                                        </ng-template>
+                                    </td>
+                                    <td>{{d.isActive}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
